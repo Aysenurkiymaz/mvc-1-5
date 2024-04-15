@@ -1,0 +1,27 @@
+const books = [
+  {
+    id: 1,
+    title: 'Book 1',
+    publishingYear: 2020,
+    author: { id: 1, name: 'Author 1' }
+  }
+];
+
+let nextId = books.length + 1;
+
+module.exports = {
+  getBooks: () => books,
+  addBook: (title, publishingYear, authorId) => {
+    const newBook = {
+      id: nextId++,
+      title,
+      publishingYear: parseInt(publishingYear, 10),
+      author: { id: parseInt(authorId, 10) }
+    };
+    books.push(newBook);
+  },
+  getBookById: id => books.find(book => book.id === parseInt(id, 10)),
+  deleteBook: id => {
+    books = books.filter(book => book.id !== parseInt(id, 10));
+  }
+};
